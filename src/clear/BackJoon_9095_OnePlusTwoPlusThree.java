@@ -1,4 +1,4 @@
-package ps;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;

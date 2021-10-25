@@ -1,8 +1,6 @@
-package ps;
+package clear;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 class MenuRenewal {
 
