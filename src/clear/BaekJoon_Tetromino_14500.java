@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Main {
+public class BaekJoon_Tetromino_14500 {
     static int row;
     static int col;
     static int[][] map;
