@@ -1,5 +1,7 @@
+package again;
+
 import java.util.Scanner;
-public class Main {
+public class BaekJoon_1463_MakeOne {
 
     static Integer[] dp;
 
