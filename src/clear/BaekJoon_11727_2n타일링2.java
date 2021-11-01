@@ -1,10 +1,10 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Main {
+public class BaekJoon_11727_2n타일링2 {
 
     static long[] dp;
 

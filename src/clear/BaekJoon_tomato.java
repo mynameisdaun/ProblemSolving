@@ -1,4 +1,4 @@
-//package challenging;
+package clear;//package challenging;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Main {
+public class BaekJoon_tomato {
 
     static int unripped = 0;
     static int ripped = 0 ;

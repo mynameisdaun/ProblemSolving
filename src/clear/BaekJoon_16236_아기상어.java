@@ -1,9 +1,11 @@
+package clear;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class Main {
+public class BaekJoon_16236_아기상어 {
 
     static int[][] map;
     static BabyShark babyShark;
@@ -41,7 +43,7 @@ public class Main {
             Fish crntFish = fishList.get(0);
             fishList.remove(0);
 
-            if(crntFish.size >= babyShark.size || crntFish.distance > n*n) {
+            if(crntFish.size >= babyShark.size || crntFish.distance >= n*n) {
                 break;
             } else {
 
@@ -61,8 +63,6 @@ public class Main {
         }
         System.out.println(answer);
     }
-
-
 
     static class BabyShark {
         int x;
@@ -112,14 +112,10 @@ public class Main {
     }
 
     static int getDistance(int fishX, int fishY) {
-        int x = babyShark.x;
-        int y = babyShark.y;
-        int S = 0;
         int min = Integer.MAX_VALUE;
         visited = new boolean[n][n];
         Queue<Integer[]> queue = new LinkedList<Integer[]>();
-        queue.offer(new Integer[] {x,y,S});
-
+        queue.offer(new Integer[] {babyShark.x, babyShark.y,0});
         while(!queue.isEmpty()) {
             Integer[] curr = queue.poll();
             int currX = curr[0];
@@ -137,10 +133,8 @@ public class Main {
                     int nx = currX + dx[i];
                     int ny = currY + dy[i];
                     if(nx>=0&&nx<n&&ny>=0&&ny<n&&!visited[nx][ny]&&map[nx][ny]<= babyShark.size) {
-
                         visited[nx][ny]=true;
                         queue.offer(new Integer[] {nx, ny, currS+1});
-
                     }
                 }
             }

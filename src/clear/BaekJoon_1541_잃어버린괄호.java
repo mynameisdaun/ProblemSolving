@@ -1,4 +1,4 @@
-package challenging;
+package clear;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
@@ -7,7 +7,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Main {
+public class BaekJoon_1541_잃어버린괄호 {
 
     public static void main(String[] args) throws IOException, ScriptException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

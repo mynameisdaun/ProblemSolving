@@ -1,11 +1,11 @@
-//package challenging;
+package clear;//package challenging;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 
-public class Main {
+public class BaekJoon_Z {
 
     static int N;
     static int r;

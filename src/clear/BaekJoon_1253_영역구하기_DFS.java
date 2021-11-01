@@ -1,11 +1,14 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
 
-public class Main {
+public class BaekJoon_1253_영역구하기_DFS {
 
     static int ROW;
     static int COL;

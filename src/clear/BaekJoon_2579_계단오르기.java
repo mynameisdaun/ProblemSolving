@@ -1,11 +1,11 @@
-//package challenging;
+package clear;//package challenging;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 
-public class Main {
+public class BaekJoon_2579_계단오르기 {
     static int[] stairs;
     static int[] dp;
     static int n;

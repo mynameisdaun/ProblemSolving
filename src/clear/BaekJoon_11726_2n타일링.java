@@ -1,10 +1,10 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Main {
+public class BaekJoon_11726_2n타일링 {
 
     static long[] dp;
 
@@ -19,33 +19,41 @@ public class Main {
             return;
         }
         if(n==2) {
-            System.out.println(2);
-            return;
-        }
-        if(n==3) {
             System.out.println(3);
             return;
         }
-        if(n==4) {
+        if(n==3) {
             System.out.println(5);
             return;
         }
-
-        dp[1] = 0 + 1;    //1
-        dp[2] = 1 + 0 + 1;        //3
-        dp[3] = 0 + 2 + 0 + 1; //3
-        dp[4] = 1 + 0 + 3 + 0 + 1;   //5
-
-        for(int i=5 ;i <=n ; i ++) {
-            dp[i] = (dp[i-1]+dp[i-2])%10007;
+        if(n==4) {
+            System.out.println(11);
+            return;
         }
-//        dp[1] = 0 + 1;    //1
-//        dp[2] = 1 + 0 + 1;        //3
-//        dp[3] = 0 + 2 + 0 + 1; //3
-//        dp[4] = 1 + 0 + 3 + 0 + 1;   //5
-//        dp[5] = 0 + 3 + 0 + 4 + 0 + 1; //8
-//        dp[6] = 1 + 0 + 6 + 0 + 5 + 0 + 1; //13
-//        dp[7] = 0 + 4 + 0 + 10 + 0 + 6 + 0 + 1; //21
+
+        dp[1] = 1;
+        dp[2] = 3;
+        dp[3] = 5;
+        dp[4] = 11;
+
+        for(int i = 5 ; i<=n ; i ++) {
+
+            if(i % 2 == 0) {
+                dp[i] = (dp[i-1]*2 +1) % 10007;
+            }else {
+                dp[i] = (dp[i-1]*2 -1) % 10007;
+            }
+
+        }
+
+        System.out.println(dp[5]);
+        // 1  3  5  11  21
+        //dp[1] = 1;
+        //dp[2] = 1 + 1*2 = 3 ;
+        //dp[3] = 1 + 4 = 5;
+        //dp[4] = 1 + 6 + 4 = 11
+        //dp[5] = 1 + 12 + 8 = 21;
+
 
         System.out.println(dp[n]);
 

@@ -1,11 +1,14 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
 
-public class Main {
+public class BaekJoon_2667_단지번호붙히기 {
 
 
     static int N;

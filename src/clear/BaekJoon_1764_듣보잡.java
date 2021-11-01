@@ -1,13 +1,11 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashSet;
-import java.util.PriorityQueue;
-import java.util.Set;
+import java.util.*;
 
-public class Main {
+public class BaekJoon_1764_듣보잡 {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -17,7 +15,7 @@ public class Main {
         int heard = Integer.parseInt(str[0]);
         int seen = Integer.parseInt(str[1]);
 
-        PriorityQueue<String> pq = new PriorityQueue<String>();
+        List<String> pq = new ArrayList<String>();
         Set<String> heardSet = new HashSet<String>();
         Set<String> seenSet = new HashSet<String>();
 
@@ -28,13 +26,13 @@ public class Main {
         for(int i = 0 ; i < seen ; i ++) {
             String seenName = br.readLine();
             if(heardSet.contains(seenName)) {
-                pq.offer(seenName);
+                pq.add(seenName);
             }
         }
-
+        Collections.sort(pq);
         System.out.println(pq.size());
-        while(!pq.isEmpty()) {
-            System.out.println(pq.poll());
+        for(String x: pq) {
+            System.out.println(x);
         }
 
 

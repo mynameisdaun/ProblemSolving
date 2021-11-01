@@ -1,10 +1,10 @@
-package challenging;
+package again;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Main {
+public class BaekJoon_1676_팩토리얼0의갯수 {
 
     static long[] dp = new long[501];
     static int answer = 0 ;
