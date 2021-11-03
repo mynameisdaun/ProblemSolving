@@ -10,7 +10,6 @@ import java.util.Queue;
 
 public class BaekJoon_2667_단지번호붙히기 {
 
-
     static int N;
     static int[][] BOARD;
     static int NumberOfArea = 0;

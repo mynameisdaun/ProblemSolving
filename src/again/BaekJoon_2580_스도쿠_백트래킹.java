@@ -1,11 +1,11 @@
-package challenging;
+package again;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
-public class Main {
+public class BaekJoon_2580_스도쿠_백트래킹 {
     static int[][] board = new int[10][10];
     static boolean[] visited = new boolean[10];
 
