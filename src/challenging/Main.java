@@ -8,7 +8,7 @@ import java.util.Arrays;
 public class Main {
     static int[][] board = new int[10][10];
     static boolean[] visited = new boolean[10];
-
+    static int commit =0 ;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -50,21 +50,8 @@ public class Main {
             }
             board[row][col] =  0;
             return false;
-            }
         }
-
-/*
-0 0 0 0 0 0 0 0 0
-1 0 0 0 2 0 0 0 0
-0 0 0 0 0 3 0 0 4
-0 0 5 0 7 0 8 0 0
-0 0 0 0 0 0 0 0 0
-4 0 0 3 0 0 1 0 2
-0 0 0 0 0 0 0 0 0
-2 7 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0
-* */
-
+    }
 
     static boolean isValidSudoku(int x, int y) {
 
