@@ -1,11 +1,14 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
-public class Main {
+public class BaekJoon_17141_연구소2 {
 
     static int[][] board;
     static int NumberOfVirus = 0;
