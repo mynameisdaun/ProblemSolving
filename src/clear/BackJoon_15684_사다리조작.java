@@ -1,10 +1,10 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Main {
+public class BackJoon_15684_사다리조작 {
 
     static int N;
     static int M;
