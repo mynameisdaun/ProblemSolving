@@ -1,4 +1,4 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Main {
+public class BaekJoon_2210_숫자판점프 {
 
     static int N = 5;
     static int[][]board = new int[N][N];
