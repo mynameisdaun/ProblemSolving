@@ -1,4 +1,4 @@
-package challenging;
+package again;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -61,7 +61,7 @@ import java.util.Queue;
 ..................................................
 */
 
-public class Main {
+public class BaekJoon_3055_탈출_BFS_2개일때조심 {
 
     static int R, C;
     static char[][] board;
