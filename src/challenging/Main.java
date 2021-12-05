@@ -23,7 +23,7 @@ public class Main {
         COL = Integer.parseInt(arr[1]);
         SECOND = Integer.parseInt(arr[2]);
         board = new char[ROW][COL];
-////////..
+////////...
         for(int i = 0 ; i < ROW ; i ++) {
             char[] str = br.readLine().toCharArray();
             for(int j = 0 ; j < COL ; j ++) {
