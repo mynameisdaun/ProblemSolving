@@ -34,7 +34,7 @@ public class Solution {
             }
             tmp.add(size);
         }
-        Integer a = 1;;
+        Integer a = 1;;;
         tmp.stream().map(Integer::intValue).collect(Collectors.toList()).toArray();
         return answer;
     }
