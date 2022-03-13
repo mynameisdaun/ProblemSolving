@@ -1,13 +1,13 @@
-package challenging;
+package clear;
 
-public class Solution {
+public class 합이같은부분집합 {
 
     public static boolean flag = false;
 
     public static void main(String[] args) {
         int N = 6;
         int[] arr = {1,3,5,6,7,10};
-        Solution solution = new Solution();
+        합이같은부분집합 solution = new 합이같은부분집합();
         solution.solution(N, arr);
     }
 
