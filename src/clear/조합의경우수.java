@@ -1,16 +1,16 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
-public class Main {
+public class 조합의경우수 {
 
     public static int[][] check;
 
     public static void main(String[] args) throws IOException {
-        Main main = new Main();
+        조합의경우수 main = new 조합의경우수();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int[] input1 = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         int n = input1[0];
