@@ -1,20 +1,17 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Main {
+public class 중복순열구하기 {
 
     static int answer = Integer.MIN_VALUE;
 
     public static void main(String[] args) throws IOException {
-        Main main = new Main();
+        중복순열구하기 main = new 중복순열구하기();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String[] input1 = br.readLine().split(" ");
-        int N = Integer.parseInt(input1[0]);
-        int M = Integer.parseInt(input1[1]);
-        main.DFS(0, N, M, new int[M]);
+
     }
 
     void DFS (int L, int N, int M, int[] arr) {

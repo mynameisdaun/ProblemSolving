@@ -1,15 +1,15 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Main {
+public class 바둑이승차 {
 
     static int max = Integer.MIN_VALUE;
 
     public static void main(String[] args) throws IOException {
-        Main main = new Main();
+        바둑이승차 main = new 바둑이승차();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String[] input = br.readLine().split(" ");
         int total = Integer.parseInt(input[0]);
