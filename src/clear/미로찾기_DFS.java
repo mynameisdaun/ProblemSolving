@@ -1,11 +1,11 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
-public class Main {
+public class 미로찾기_DFS {
 
     static int[] dx = {-1,0,1,0};
     static int[] dy = {0,-1,0,1};
@@ -13,7 +13,7 @@ public class Main {
     static int answer = 0;
 
     public static void main(String[] args) throws IOException {
-        Main main = new Main();
+        미로찾기_DFS main = new 미로찾기_DFS();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         board = new int[7][7];
         for(int i = 0 ; i < 7 ; i ++) {

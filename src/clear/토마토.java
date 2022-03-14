@@ -1,11 +1,11 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class Main {
+public class 토마토 {
 
     static int[] dx = {-1,0,1,0};
     static int[] dy = {0,-1,0,1};
@@ -17,7 +17,7 @@ public class Main {
     static int answer = Integer.MIN_VALUE;
 
     public static void main(String[] args) throws IOException {
-        Main main = new Main();
+        토마토 main = new 토마토();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int[] input = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         row = input[1];

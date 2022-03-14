@@ -1,4 +1,4 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Main {
+public class 미로의_최단거리_통로_BFS {
 
     static int[] dx = {-1,0,1,0};
     static int[] dy = {0,-1,0,1};
@@ -15,7 +15,7 @@ public class Main {
     static int answer = Integer.MAX_VALUE;
 
     public static void main(String[] args) throws IOException {
-        Main main = new Main();
+        미로의_최단거리_통로_BFS main = new 미로의_최단거리_통로_BFS();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         board = new int[7][7];
         for(int i = 0 ; i < 7 ; i ++) {
