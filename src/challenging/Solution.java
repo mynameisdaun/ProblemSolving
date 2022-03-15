@@ -20,7 +20,7 @@ public class Solution {
             arr[i] = Integer.parseInt(br.readLine());
         }
         solution.DFS(0,0,N,arr,total);
-        System.out.println(max);
+        System.out.println(max);;
     }
 
     void DFS(int L, int S, int N, int[] arr, int total) {
