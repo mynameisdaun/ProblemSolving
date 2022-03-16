@@ -1,11 +1,11 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
-public class Solution {
+public class 섬나라아일랜드 {
 
     static int[][] board;
     static int N;

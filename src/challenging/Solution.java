@@ -3,34 +3,56 @@ package challenging;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
+import java.util.Arrays;
 
 public class Solution {
 
-    static int max = Integer.MIN_VALUE;
+    static int[][] board;
+    static int N;
+    static int answer;
+    static int[] dx = {-1, 0, 1, 0,1,1,-1,-1};
+    static int[] dy = {0, -1, 0, 1,1,-1,1,-1};
 
     public static void main(String[] args) throws IOException {
-        Solution solution = new Solution();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String[] input = br.readLine().split(" ");
-        int total = Integer.parseInt(input[0]);
-        int N = Integer.parseInt(input[1]);
-        int[] arr = new int[N];
-        for(int i = 0 ; i < N ; i ++) {
-            arr[i] = Integer.parseInt(br.readLine());
+        N = Integer.parseInt(br.readLine());
+        board = new int[N+1][N+1];
+        for(int i = 1; i <= N ; i ++) {
+            int[] input = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+            for(int j = 1 ; j <= N ; j ++) {
+                board[i][j] = input[j-1];
+            }
         }
-        solution.DFS(0,0,N,arr,total);
-        System.out.println(max);;
+
+        for(int i = 1; i <= N ; i ++) {
+            for(int j = 1 ; j <= N ; j ++) {
+                if(board[i][j]==1) {
+                    answer++;
+                    board[i][j]=0;
+                    DFS(i,j);
+                }
+            }
+        }
+        System.out.println(answer);
     }
 
-    void DFS(int L, int S, int N, int[] arr, int total) {
-        if(S > total) return;
-        if(L==N) {
-            if(S > max) max = S;
-        } else {
-            DFS(L+1, S+arr[L], N, arr, total);
-            DFS(L+1, S, N, arr, total);
+    static void DFS(int x, int y) {
+        for(int i = 0 ; i < dx.length ; i ++) {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+            if(nx>=1&&nx<=N&&ny>=1&&ny<=N&&board[nx][ny]==1) {
+                board[nx][ny]=0;
+//                for(int m = 1 ; m <= N ; m++) {
+//                    for(int n =1 ; n <=N ; n++) {
+//                        System.out.print(board[m][n]);
+//                    }
+//                    System.out.println();
+//                }
+//                System.out.println("==================");
+                DFS(nx, ny);
+            }
         }
+
     }
 
 }
