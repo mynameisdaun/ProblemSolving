@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class 피자배달거리 {
 
@@ -20,8 +21,8 @@ public class 피자배달거리 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int[] input = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-        N = input[0];
-        M = input[1];
+        Set<String >set = new HashSet<String>();
+        set.stream().findFirst().get();
         board = new int[N+1][N+1];
         for(int i = 1 ; i <= N ; i ++) {
             int[] arr = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
@@ -32,7 +33,10 @@ public class 피자배달거리 {
             }
         }
         피자집그룹 = new Point[M];
-
+        List<String> answer = new LinkedList<>();
+        answer.stream().map(String::toString).toArray();
+        int[] rocks = {2,11,17,21};
+        List<Integer> 징검다리 = new LinkedList<Integer>(Arrays.stream(rocks).boxed().sorted().collect(Collectors.toList()));
         최소피자배달거리구하기(0,0);
         System.out.println(answer);
     }

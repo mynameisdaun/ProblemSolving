@@ -1,10 +1,10 @@
-package challenging;
+package clear;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Solution {
+public class 베스트앨범 {
     public class Music implements Comparable<Music>{
 
         private int played;

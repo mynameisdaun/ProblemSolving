@@ -1,58 +1,54 @@
 package challenging;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Solution {
+    public class Music implements Comparable<Music>{
 
-    static int[][] board;
-    static int N;
-    static int answer;
-    static int[] dx = {-1, 0, 1, 0,1,1,-1,-1};
-    static int[] dy = {0, -1, 0, 1,1,-1,1,-1};
+        private int played;
+        private int id;
+        private String genre;
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        N = Integer.parseInt(br.readLine());
-        board = new int[N+1][N+1];
-        for(int i = 1; i <= N ; i ++) {
-            int[] input = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-            for(int j = 1 ; j <= N ; j ++) {
-                board[i][j] = input[j-1];
-            }
+
+        public Music(String genre, int played, int id) {
+            this.genre = genre;
+            this.played = played;
+            this.id = id;
         }
 
-        for(int i = 1; i <= N ; i ++) {
-            for(int j = 1 ; j <= N ; j ++) {
-                if(board[i][j]==1) {
-                    answer++;
-                    board[i][j]=0;
-                    DFS(i,j);
-                }
-            }
+        @Override
+        public int compareTo(Music other) {
+            if(this.played == other.played) return this.id - other.id;
+            return other.played - this.played;
         }
-        System.out.println(answer);
+
+        public String getGenre() {return genre;}
     }
 
-    static void DFS(int x, int y) {
-        for(int i = 0 ; i < dx.length ; i ++) {
-            int nx = x + dx[i];
-            int ny = y + dy[i];
-            if(nx>=1&&nx<=N&&ny>=1&&ny<=N&&board[nx][ny]==1) {
-                board[nx][ny]=0;
-//                for(int m = 1 ; m <= N ; m++) {
-//                    for(int n =1 ; n <=N ; n++) {
-//                        System.out.print(board[m][n]);
-//                    }
-//                    System.out.println();
-//                }
-//                System.out.println("==================");
-                DFS(nx, ny);
-            }
+    public int[] solution(String[] genres, int[] plays) {
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        Set<Integer> set = new HashSet<>();
+        //set.add
+        for(Map.Entry<Integer,Integer> entry : map.entrySet()) {
+
         }
 
+        return IntStream.range(0, genres.length)
+                .mapToObj(i -> new Music(genres[i], plays[i], i))
+                .collect(Collectors.groupingBy(Music::getGenre))
+                .entrySet().stream()
+                .sorted((a, b) -> sum(b.getValue()) - sum(a.getValue()))
+                .flatMap(x->x.getValue().stream().sorted().limit(2))
+                .mapToInt(x->x.id).toArray();
     }
 
+    private int sum(List<Music> value) {
+        int answer = 0;
+        for (Music music : value) {
+            answer+=music.played;
+        }
+        return answer;
+    }
 }
