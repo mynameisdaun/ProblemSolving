@@ -25,7 +25,7 @@ public class Solution {
         }
 
         public String getGenre() {return genre;}
-    }
+    }//
 
     public int[] solution(String[] genres, int[] plays) {
         Map<Integer, Integer> map = new HashMap<Integer, Integer>();
