@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.Stack;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -37,5 +39,11 @@ public class Main {
             }
         }
         System.out.println(answer);
+        Stack<String> stack = new Stack<String>();
+        stack.stream().collect(Collectors.joining());
+        StringBuilder sb= new StringBuilder();
+        sb.append(1L);
+        String.copyValueOf("hi".toCharArray());
     }
+
 }
