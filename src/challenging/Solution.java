@@ -36,7 +36,7 @@ public class Solution {
     }
 
     static long 연산(String expression, String[] 연산순서) {
-        long tmp = Long.MIN_VALUE;;
+        long tmp = Long.MIN_VALUE;
 
         String 수식 = String.copyValueOf(expression.toCharArray());
 
