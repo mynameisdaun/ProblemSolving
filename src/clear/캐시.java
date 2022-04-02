@@ -1,8 +1,8 @@
-package challenging;
+package clear;
 
-public class Solution {
+public class 캐시 {
     public static void main(String[] args) {
-        Solution solution = new Solution();
+        캐시 solution = new 캐시();
         System.out.print(solution.solution(2, new String[]{"Jeju", "Pangyo", "NewYork", "newyork"}));
     }
 
