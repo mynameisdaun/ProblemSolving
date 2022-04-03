@@ -11,7 +11,7 @@ public class 캐시 {
             Node head = new Node("head");
             Node tail = new Node("tail");
             head.next=tail;
-            tail.prev=head;
+            tail.prev=head;;
             int currentCache = 0 ;
 
             for(String x : cities) {
