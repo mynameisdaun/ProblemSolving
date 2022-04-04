@@ -11,7 +11,7 @@ public class 알고스팟_PICNIC {
     public static void main(String[] args) throws IOException {
         알고스팟_PICNIC main = new 알고스팟_PICNIC();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        //int tcase = Integer.parseInt(br.readLine());
+        //int tcase = Integer.parseInt(br.readLine());;
         int tcase = 1;
 
         while(tcase-- > 0) {
