@@ -1,16 +1,15 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.regex.Pattern;
 
-public class Main {
+public class BaekJoon_1992_쿼드트리 {
     static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
-        Main main = new Main();
+        BaekJoon_1992_쿼드트리 main = new BaekJoon_1992_쿼드트리();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
         int[][] board = new int[N][N];

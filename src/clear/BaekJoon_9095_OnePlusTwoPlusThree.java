@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-class BackJoon_9095_OnePlusTwoPlusThree {
+class BaekJoon_9095_OnePlusTwoPlusThree {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

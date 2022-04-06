@@ -1,16 +1,16 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
-public class Main {
+public class BaekJoon_2630_색종이만들기 {
     static int white = 0;
     static int blue = 0;
 
     public static void main(String[] args) throws IOException {
-        Main main = new Main();
+        BaekJoon_2630_색종이만들기 main = new BaekJoon_2630_색종이만들기();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
         int[][] board = new int[N][N];
