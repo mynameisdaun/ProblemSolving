@@ -1,15 +1,15 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
-public class Main {
+public class BaekJoon_1780_종이의개수 {
     static int[] answer = new int[3];
 
     public static void main(String[] args) throws IOException {
-        Main main = new Main();
+        BaekJoon_1780_종이의개수 main = new BaekJoon_1780_종이의개수();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
         int[][] board = new int[N][N];

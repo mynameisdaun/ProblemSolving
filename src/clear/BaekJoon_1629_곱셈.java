@@ -1,16 +1,15 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.math.BigInteger;
 import java.util.Arrays;
 
-public class Main {
+public class BaekJoon_1629_곱셈 {
     static long[] arr;
 
     public static void main(String[] args) throws IOException {
-        Main main = new Main();
+        BaekJoon_1629_곱셈 main = new BaekJoon_1629_곱셈();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int[] input = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
 
