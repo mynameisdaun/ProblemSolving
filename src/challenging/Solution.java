@@ -1,83 +1,61 @@
 package challenging;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Solution {
     public static void main(String[] args) {
-        Solution solution = new Solution();
-        System.out.print(solution.solution(2, new String[]{"Jeju", "Pangyo", "NewYork", "newyork"}));
+        String tstring = "this is {template} {template} is {state}";
+        String[][] variables = new String[][]{{"template","{state}"},{"state","{template}"}};
+        System.out.println(solution(tstring, variables));
     }
 
-        public int solution(int cacheSize, String[] cities) {
-            int answer = 0;
-            Node head = new Node("head");
-            Node tail = new Node("tail");
-            head.next=tail;
-            tail.prev=head;
-            int currentCache = 0 ;
-
-            for(String x : cities) {
-
-                String city = x.toLowerCase();
-                System.out.println("currCity: "+city);
-                Node node = head.next;
-                boolean hit = false;
-
-                while(node.next!=null) {
-                    System.out.print(node.name+" ");
-                    if(city.equals(node.name)) {
-                        hit = true;
-                        break;
-                    }
-                    node = node.next;
-                }
-                System.out.println();
-                answer += hit ? 1 : 5;
-
-                if(hit) {
-                    //연결끊기
-                    System.out.println("찾은노드:"+node.name);
-
-                    Node prevNode = node.prev;
-                    System.out.println("찾은노드이전:"+prevNode.name);
-                    prevNode.next = node.next;
-                    prevNode.next.prev=prevNode;
-                    currentCache--;
-                }
-                else if(cacheSize!=0&&cacheSize==currentCache) {
-                    //맨마지막노드 아웃;
-                    Node lastNode = tail.prev;
-                    tail.prev=lastNode.prev;
-                    tail.prev.next=tail;
-                    currentCache--;
-                }
-
-                if (cacheSize > currentCache) {
-                    Node firstNode = head.next;
-                    head.next = new Node(city);
-                    head.next.next = firstNode;
-                    head.next.prev=head;
-                    firstNode.prev=head.next;
-                    currentCache++;
-                }
-
-                System.out.println("====");
-                Node curr = head;
-                while(curr.next!=null) {
-                    System.out.print(curr.name+" ");
-                    curr = curr.next;
-                }
-                System.out.println();
-                System.out.println("====");
+        public static String solution(String tstring, String[][] variables) {
+            Map<String, String> map = new HashMap<>();
+            for(String[] variable : variables) {
+                map.put(variable[0], variable[1]);
             }
-            return answer;
+
+            for(String[] variable : variables) {
+                String A = variable[0];
+                String B = variable[1];
+
+                String C = getTemplate(A,B,map);
+                System.out.println("key: "+A+" values: "+B);
+                //map.put(A,C);
+            }
+            for(String key : map.keySet()) {
+                tstring = tstring.replaceAll("\\{"+key+"\\}",getTemplate(key, map.get(key),map));
+            }
+
+            return tstring;
         }
 
-        class Node {
-            private String name;
-            private Node prev;
-            private Node next;
-
-            public Node(String name) {
-                this.name=name;
+        public static String getTemplate(String A, String B, Map<String, String> map) {
+            //다음것
+            if(!B.startsWith("{")) {
+                return B;
             }
+            String C = map.get(B.substring(1,B.length()-1));
+            //없다면
+            if( C == null) {
+                return B;
+            }
+            if(!C.startsWith("{")) {
+                return C;
+            }
+            if(C.startsWith("{")) {
+                System.out.print("A "+A+" ");
+                System.out.print("B "+B+" ");
+                System.out.println("C"+C);
+                if(C.substring(1, C.length()-1).equals(A)) {
+                    System.out.println("hello!");
+                    return "{"+A+"}";
+                }
+                return getTemplate(A,C,map);
+            }
+            return "";
         }
+
+
 }

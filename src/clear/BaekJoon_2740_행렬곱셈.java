@@ -1,10 +1,10 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Main {
+public class BaekJoon_2740_행렬곱셈 {
     static int answer;
 
     public static void main(String[] args) throws IOException {

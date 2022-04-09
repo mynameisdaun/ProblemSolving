@@ -1,11 +1,11 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
-public class Main {
+public class 알고스팟_게임판_덮기 {
     static int[][] dx = new int[][]{
             {0,1},{0,1},{1,1},{1,1}
     };

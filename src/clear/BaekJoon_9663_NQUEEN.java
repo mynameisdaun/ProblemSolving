@@ -1,10 +1,10 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Main {
+public class BaekJoon_9663_NQUEEN {
     static int answer = 0;
 
     public static void main(String[] args) throws IOException {
