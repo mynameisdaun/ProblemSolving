@@ -88,7 +88,7 @@ public class BaekJoon_1253_영역구하기_DFS {
             }
         }
 
-        widthMap.put(NumberOfWidth,count);
+        widthMap.put(NumberOfWidth,count);;
     }
 
     static class Word implements Comparable<Word>{
