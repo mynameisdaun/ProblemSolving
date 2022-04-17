@@ -84,7 +84,7 @@ public class BaekJoon_1253_영역구하기_DFS {
                 if(nx>=0&&nx<ROW&&ny>=0&&ny<COL&&BOARD[nx][ny]==0) {
                     BOARD[nx][ny] = 1;
                     queue.add(new Integer[] {nx,ny});
-                };
+                };;
             }
         }
 
