@@ -18,7 +18,7 @@ public class Solution {
 
             for(String[] variable : variables) {
                 String A = variable[0];
-                String B = variable[1];
+                String B = variable[1];;
 
                 String C = getTemplate(A,B,map);
                 System.out.println("key: "+A+" values: "+B);
