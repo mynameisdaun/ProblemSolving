@@ -1,9 +1,9 @@
-package challenging;
+package clear;
 
 import java.io.IOException;
 import java.util.Arrays;
 
-public class Main {
+public class 거스름돈개수최적화문제 {
 
     public static void main(String[] args) throws IOException {
         int n = 3;

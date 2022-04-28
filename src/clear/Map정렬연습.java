@@ -1,25 +1,30 @@
-package challenging;
+package clear;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Main {
+public class Map정렬연습 {
 
     public static void main(String[] args) throws IOException {
         //BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        Map<String, Integer> map = new HashMap<>();
-        map.put("정다운",100);
-        map.put("이순신",77);
-        map.put("홍길동",95);
-        Map<String, Integer> sorted = map.entrySet()
-                .stream()
-                .sorted(Map.Entry.comparingByValue())
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
-                        (e1, e2) -> e1, LinkedHashMap::new));
-        //key, value, mergeFunction, map
-        sorted.forEach((k,v)->System.out.println(k+"="+v));
+        int K = 3;
+        int[] A = {1, 2, 5, 4, 3};
+        int[] B = {5, 5, 6, 6, 5};
+        int N = A.length;
 
+        Arrays.sort(A);
+        Arrays.sort(B);
+        for(int i = 0 ; i < N ; i++) {
+            for(int j = 0 ; j < N ; j ++) {
+
+            }
+            if(K==0) break;
+        }
+        System.out.println(Arrays.stream(A).sum());
     }
 
 }
