@@ -1,10 +1,10 @@
-package challenging;
+package clear;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.PriorityQueue;
 
-public class Main {
+public class 다익스트라알고리즘구현 {
 
     public static void main(String[] args) throws IOException {
         int n = 6;  // node 수/ vertex 수
