@@ -7,7 +7,7 @@ import java.util.PriorityQueue;
 public class 다익스트라알고리즘구현 {
 
     public static void main(String[] args) throws IOException {
-        int n = 6;  // node 수/ vertex 수
+        int n = 6;  // node 수/ vertex 수;
         int start = 1; //시작노드번호
         int[][] input = {
                 {1, 2, 2},
