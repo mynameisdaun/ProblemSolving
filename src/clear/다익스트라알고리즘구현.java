@@ -9,6 +9,11 @@ public class 다익스트라알고리즘구현 {
     public static void main(String[] args) throws IOException {
         int n = 6;  // node 수/ vertex 수;
         int start = 1; //시작노드번호
+        StringBuilder sb = new StringBuilder();
+        sb.append('1');
+        System.out.println(sb.toString());
+        sb.deleteCharAt(sb.length()-1);
+        System.out.println(sb.toString());
         int[][] input = {
                 {1, 2, 2},
                 {1, 3, 5},
