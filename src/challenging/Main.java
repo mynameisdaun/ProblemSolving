@@ -1,15 +1,13 @@
 package challenging;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.PriorityQueue;
 
 public class Main {
+    private static int INF = 987654321;
 
     public static void main(String[] args) throws IOException {
-        int n = 6;  // node 수/ vertex 수
-        int start = 1; //시작노드번호
-        int[][] input = {
+        int n = 6;
+        int[][] arr = {
                 {1, 2, 2},
                 {1, 3, 5},
                 {1, 4, 1},
@@ -22,63 +20,39 @@ public class Main {
                 {5, 3, 1},
                 {5, 6, 2}
         };
-        int[][] graph = new int[n+1][n+1];
-        for(int i = 0 ; i < graph.length ; i++) {
-            Arrays.fill(graph[i], Integer.MAX_VALUE);
-        }
-        for(int i = 0 ; i < input.length; i ++) {
-            int x = input[i][0];
-            int y = input[i][1];
-            int d = input[i][2];
-            graph[x][y]=d;
-            graph[y][x]=d;
-        }
-        int[] distance = new int[n+1];
-        Arrays.fill(distance, Integer.MAX_VALUE);
-
-        boolean[] visited = new boolean[n+1];
-
-        PriorityQueue<Node> pq = new PriorityQueue<Node>();
-        pq.offer(new Node(start,0));
-
-        distance[start]=0;
-        while(!pq.isEmpty()) {
-            Node node = pq.poll();
-            int dist = node.getDistance();
-            int now = node.getIndex();
-            if(visited[now]) {
-                continue;
+        int[][] board = new int[n+1][n+1];
+        for(int i = 1 ; i <=n ; i ++) {
+            for(int j = 1; j <=n ; j++) {
+                if(i==j) {
+                    board[i][j] = 0;
+                    continue;
+                }
+                board[i][j]=INF;
             }
-            visited[now]=true;
-            for(int i = 1 ; i <= n ; i ++) {
-                if(graph[now][i] < Integer.MAX_VALUE) {
-                    distance[i] = Math.min(distance[i],dist+graph[now][i]);
-                    pq.offer(new Node(i, dist+graph[now][i]));
+        }
+
+        for(int i = 0 ; i < arr.length ; i++) {
+            int x = arr[i][0];
+            int y = arr[i][1];
+            int d = arr[i][2];
+            board[x][y]=d;
+            board[y][x]=d;
+        }
+
+        int start = 1;
+
+        for(int k = 1 ; k <= n ; k++) {
+            for(int i = 1 ; i <=n ; i++) {
+                for(int j = 1; j <=n ; j++) {
+                    board[i][j] = Math.min(board[i][j], board[i][k] + board[k][j]);
                 }
             }
         }
-    }
 
-    static class Node implements Comparable<Node> {
-        private int index;
-        private int distance;
-
-        public Node(final int index, final int distance) {
-            this.index = index;
-            this.distance = distance;
-        }
-
-        public int getIndex() {
-            return index;
-        }
-
-        public int getDistance() {
-            return distance;
-        }
-
-        @Override
-        public int compareTo(final Node o) {
-            return this.distance-o.distance;
+        for(int x : board[start]) {
+            System.out.println(x);
         }
     }
+
+
 }
