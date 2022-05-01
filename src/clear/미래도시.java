@@ -1,8 +1,8 @@
-package challenging;
+package clear;
 
 import java.io.IOException;
 
-public class Main {
+public class 미래도시 {
     private static int INF = 987654321;
 
     public static void main(String[] args) throws IOException {
