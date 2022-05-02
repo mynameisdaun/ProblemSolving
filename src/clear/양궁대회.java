@@ -1,8 +1,6 @@
-package challenging;
+package clear;
 
-import java.util.*;
-
-class Solution {
+class 양궁대회 {
     static int[] answer;
     static int max = Integer.MIN_VALUE;
 
