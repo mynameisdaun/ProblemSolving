@@ -1,8 +1,6 @@
-package challenging;
+package clear;
 
-import java.util.*;
-
-class Solution {
+class 배달 {
     public int solution(int N, int[][] road, int K) {
         int INF = 98765431;
         int answer = 0;

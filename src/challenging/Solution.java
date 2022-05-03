@@ -2,74 +2,55 @@ package challenging;
 
 import java.util.*;
 
-class Solution {
-    static int[] answer;
-    static int max = Integer.MIN_VALUE;
+import java.util.*;
 
-    public int[] solution(int n, int[] info) {
-        DFS(0, new boolean[11], info, n);
-        if(answer == null) {
-            return new int[]{-1};
+class Solution {
+    public int solution(int k, int[][] dungeons) {
+        int n = dungeons.length;
+        int answer = 0;
+        List<Node> list = new ArrayList<Node>();
+        for(int[] arr : dungeons) {
+            list.add(new Node(arr[0], arr[1]));
+        }
+        Collections.sort(list);
+        PriorityQueue<Integer> pQ = new PriorityQueue<Integer>();
+
+
+        int j = 0;
+        for(int i = k ; i >= 0 ; i--) {
+            System.out.println("i: "+i+" j: "+j);
+            for( ; j < n ; j++) {
+                if(list.get(j).getM() < i) break;
+                pQ.offer(list.get(j).getE());
+            }
+            if(!pQ.isEmpty()) {
+                int e = pQ.poll();
+                System.out.println("i: "+i+" j: "+j+" e: "+e);
+                i-=e;
+                answer++;
+            }
         }
         return answer;
     }
 
-    public void DFS(int L, boolean[] win, int[] info, int n) {
-        if(L==info.length) {
-            checkPossibleAnswer(win, info, n);
-        } else {
-            win[L]=true;
-            DFS(L+1, win, info, n);
-            win[L]=false;
-            DFS(L+1, win, info, n);
-        }
-    }
+    class Node implements Comparable<Node> {
+        private int m;
+        private int e;
 
-    public void checkPossibleAnswer(boolean[] win, int[] info, int n) {
-        int ryan = 0;
-        int appeach = 0;
-        int[] tmp = new int[11];
-
-        for(int i=0 ; i<win.length ; i++) {
-            if(!win[i]&&info[i]==0) continue;
-            if(!win[i]&&info[i]>0) {
-                appeach += 10-i;
-            }
-            if(win[i]) {
-                ryan += 10-i;
-                n -= (info[i]+1);
-                tmp[i] = info[i]+1;
-            }
-        }
-        if(ryan-appeach < max || n < 0) return;
-
-        int index = 10;
-        while(n>0 && index>=0) {
-            if(win[index]) {
-                tmp[index] += n;
-                break;
-            }
-            if(info[index]-tmp[index]-1 >= 1) {
-                int t = Math.min(info[index]-tmp[index]-1, n);
-                tmp[index] += t;
-                n -=t;
-            }
-            index--;
+        public Node (int m, int e) {
+            this.m=m;
+            this.e=e;
         }
 
-        if(ryan>appeach && ryan-appeach > max) {
-            answer = tmp;
-            max = ryan-appeach;
-        } else if(ryan>appeach && ryan-appeach == max) {
-            for(int i = 10 ; i>=0 ; i--) {
-                if(tmp[i] > answer[i]) {
-                    answer=tmp;
-                    return;
-                }
-                if(tmp[i] < answer[i]) {
-                    return;
-                }
-            }
+        public int getM() {
+            return this.m;
+        }
+        public int getE() {
+            return this.e;
+        }
+        @Override
+        public int compareTo(Node o) {
+            return o.m-this.m;
         }
     }
 }
