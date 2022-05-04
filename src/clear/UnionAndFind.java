@@ -1,10 +1,9 @@
-package challenging;
+package clear;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.PriorityQueue;
 
-public class Main {
+public class UnionAndFind {
     private static int INF = 987654321;
 
     public static void main(String[] args) throws IOException {
