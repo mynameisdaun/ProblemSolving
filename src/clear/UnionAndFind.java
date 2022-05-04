@@ -30,9 +30,9 @@ public class UnionAndFind {
     //find
     public static int findParent(final int[] arr,  final int a) {
         if(arr[a] != a) {
-            return findParent(arr, arr[a]);
+            arr[a] = findParent(arr, arr[a]);
         }
-        return a;
+        return arr[a];
     }
 
     //union

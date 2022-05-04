@@ -1,9 +1,9 @@
-package challenging;
+package clear;
 
 import java.io.IOException;
 import java.util.Arrays;
 
-public class Main {
+public class 크루스칼_최소신장트리찾기 {
     private static int INF = 987654321;
 
     public static void main(String[] args) throws IOException {
