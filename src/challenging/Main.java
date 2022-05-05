@@ -2,42 +2,54 @@ package challenging;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Main {
     private static int INF = 987654321;
 
     public static void main(String[] args) throws IOException {
         int answer = 0;
+        int count = 0;
         final int n = 7;
+        final int m = 8;
         final int[][] input = {
-                {1, 2, 29},
-                {1, 5, 75},
-                {2, 3, 35},
-                {2, 6, 34},
-                {3, 4, 7},
-                {4, 6, 23},
-                {4, 7, 13},
-                {5, 6, 53},
-                {6, 7, 25}
+                {1, 2},
+                {1, 5},
+                {2, 3},
+                {2, 6},
+                {3, 4},
+                {4, 7},
+                {5, 6},
+                {6, 4},
         };
-        Arrays.sort(input, (a, b) -> a[2]-b[2]);
-        final int[] parents = new int[n+1];
+        final int[][] graph = new int[n+1][n+1];
+        final int[] inDegree = new int[n+1];
+        Arrays.stream(input).forEach(a->{
+            graph[a[0]][a[1]]=1;
+            inDegree[a[1]]++;
+        });
+
+        Queue<Integer> queue = new LinkedList<Integer>();
         for(int i = 1 ; i <= n ; i++) {
-            parents[i]=i;
+            if(inDegree[i]==0)
+                queue.offer(i);
         }
 
-        for(final int[] edge : input) {
-            if(findParent(parents, edge[0]) != findParent(parents, edge[1])) {
-                unionParent(parents, edge[0], edge[1]);
-                answer+=edge[2];
-            }
+        while(!queue.isEmpty()) {
+            int cur;
         }
-        System.out.println(answer);
+
+
+
+
+        final boolean[] visited = new boolean[n];
+
     }
 
-    public static int findParent(final int[] arr,  final int a) {
-        if(arr[a] != a) {
-            return findParent(arr, arr[a]);
+    public static int findParent(final int[] parents,  final int a) {
+        if(parents[a] != a) {
+            return findParent(parents, parents[a]);
         }
         return a;
     }
