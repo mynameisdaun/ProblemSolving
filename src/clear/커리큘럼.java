@@ -1,12 +1,11 @@
 package clear;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.stream.IntStream;
 
-public class 위상정렬 {
+public class 커리큘럼 {
     private static int INF = 987654321;
 
     public static void main(String[] args) throws IOException {
