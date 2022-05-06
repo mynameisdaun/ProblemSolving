@@ -25,42 +25,33 @@ public class Main {
         };
         final int[][] graph = new int[n+1][n+1];
         final int[] inDegree = new int[n+1];
-        Arrays.stream(input).forEach(a->{
-            graph[a[0]][a[1]]=1;
-            inDegree[a[1]]++;
-        });
+        inDegree[0]=INF;
 
-        Queue<Integer> queue = new LinkedList<Integer>();
-        for(int i = 1 ; i <= n ; i++) {
-            if(inDegree[i]==0)
+        for(int i=0 ; i<m ; i++) {
+            int x = input[i][0];
+            int y = input[i][1];
+            graph[x][y] = 1;
+            inDegree[y]++;
+        }
+
+        Queue<Integer> queue = new LinkedList<>();
+        for(int i = 1; i <= n ;i++) {
+            if(inDegree[i]==0) {
                 queue.offer(i);
+            }
         }
 
         while(!queue.isEmpty()) {
-            int cur;
-        }
-
-
-
-
-        final boolean[] visited = new boolean[n];
-
-    }
-
-    public static int findParent(final int[] parents,  final int a) {
-        if(parents[a] != a) {
-            return findParent(parents, parents[a]);
-        }
-        return a;
-    }
-
-    public static void unionParent(final int[] arr, final  int a, final int b) {
-        int pa = findParent(arr, a);
-        int pb = findParent(arr, b);
-        if(pa<pb) {
-            arr[pb] = pa;
-        } else {
-            arr[pa] = pb;
+            int curr = queue.poll();
+            //answer
+            System.out.print(curr+" ");
+            for(int i=1 ; i<=n ; i++) {
+                if(i==curr||graph[curr][i]!=1) continue;
+                inDegree[i]--;
+                if(inDegree[i]==0) {
+                    queue.offer(i);
+                }
+            }
         }
     }
 }
