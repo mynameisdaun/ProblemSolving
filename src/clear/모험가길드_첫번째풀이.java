@@ -1,9 +1,9 @@
-package challenging;
+package clear;
 
 import java.io.IOException;
 import java.util.Arrays;
 
-public class Main {
+public class 모험가길드_첫번째풀이 {
     private static int INF = 987654321;
 
     public static void main(String[] args) throws IOException {

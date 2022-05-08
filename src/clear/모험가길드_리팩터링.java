@@ -1,15 +1,18 @@
-package challenging;
+package clear;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
-public class Main {
+public class 모험가길드_리팩터링 {
     private static int INF = 987654321;
 
     public static void main(String[] args) throws IOException {
         int n  = 5;
         int answer = 0;
         int[] input = {2, 3, 1, 2, 2};
+        Arrays.stream(input).boxed().collect(Collectors.toList());
+
         Arrays.sort(input);
 
         int count = 0;

@@ -1,6 +1,6 @@
-package challenging;
+package clear;
 
-class Solution {
+class 행렬테투리회전하기 {
     public int[] solution(int rows, int columns, int[][] queries) {
         int[] answer = new int[queries.length];
         int[][] graph = new int[rows][columns];
