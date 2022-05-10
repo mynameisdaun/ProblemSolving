@@ -1,14 +1,14 @@
-package challenging;
+package clear;
 
 import java.io.IOException;
 import java.util.Arrays;
 
-public class Main {
+public class 곱하기혹은더하기 {
     private static int INF = 987654321;
 
     public static void main(String[] args) throws IOException {
         //String s = "02984";
-        String s = "567";
+        String s = "567";;
 //313
         if(s.length()==1) {
             System.out.println(s);
