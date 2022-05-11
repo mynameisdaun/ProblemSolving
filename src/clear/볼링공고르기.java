@@ -1,11 +1,11 @@
-package challenging;
+package clear;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Main {
+public class 볼링공고르기 {
 
     public static void main(String[] args) throws IOException {
         int N = 8;

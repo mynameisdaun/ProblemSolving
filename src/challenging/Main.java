@@ -1,40 +1,30 @@
 package challenging;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
-         //String s = "0001100";
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String s = br.readLine();
-        if(s.length()==1) {
-            System.out.println(0);
-            return;
-        }
-        int zeroGroup = 0;
-        int oneGroup = 0;
+        int N = 8;
+        int M = 5;
+        int[] input = {1, 3, 2, 3, 2};
+        Map<Integer, Long> map = Arrays.stream(input)
+                .boxed()
+                .collect(Collectors.groupingBy(e -> e, Collectors.counting()));
 
-        char curr = s.charAt(0);
-
-        if(curr=='0') {
-            zeroGroup++;
-        } else {
-            oneGroup++;
-        }
-
-        for(int i = 1 ; i < s.length() ; i++) {
-            if (s.charAt(i) != curr) {
-                if(s.charAt(i)=='0') {
-                    zeroGroup++;
-                }else {
-                    oneGroup++;
-                }
-                curr=s.charAt(i);
+        Long sum = 0L;
+        for(int i = 1 ; i <= M ; i++) {
+            Long currValue = map.getOrDefault(i, Long.valueOf(0));
+            Long currSum = 0L;
+            for(int j=i+1;j<=M;j++) {
+                currSum += map.getOrDefault(j,Long.valueOf(0));
             }
+            sum += (currValue*currSum);
         }
-        System.out.println(Math.min(zeroGroup, oneGroup));
+        System.out.println(sum);
+
     }
 }

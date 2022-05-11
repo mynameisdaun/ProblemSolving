@@ -1,11 +1,9 @@
-package challenging;
+package again;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.OptionalInt;
-import java.util.stream.IntStream;
 
-public class Main {
+public class 만들수없는금액_실패 {
 
     public static void main(String[] args) throws IOException {
         int N = 5;
