@@ -13,7 +13,7 @@ public class 문자열재정렬 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         char[] c = br.readLine().toCharArray();
         List<Character> arr = new ArrayList<>();
-        int sum = 0;
+        int sum = 0;;
 
         for(int i = 0 ; i < c.length ; i++) {
             if(Character.isAlphabetic(c[i])) {
