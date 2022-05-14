@@ -1,32 +1,49 @@
 package clear;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Set;
 
 public class 문자열재정렬 {
 
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        char[] c = br.readLine().toCharArray();
-        List<Character> arr = new ArrayList<>();
-        int sum = 0;;
+        Node node = new Node(1, 1);
+        Set<Node> set = new HashSet<>();
+        List<Node> road = new ArrayList<>();
+        set.addAll(road);
+        set.add(node);
+        set.remove(new Node(1,1));
+        System.out.println(set.size());
+    }
 
-        for(int i = 0 ; i < c.length ; i++) {
-            if(Character.isAlphabetic(c[i])) {
-                arr.add(c[i]);
-            }else {
-                sum += Character.getNumericValue(c[i]);
-            }
+
+    static class Node {
+        private int row;
+        private int col;
+
+        public Node(int row, int col) {
+            this.row = row;
+            this.col = col;
         }
 
-        System.out.print(
-                arr.stream().sorted().map(String::valueOf).collect(Collectors.joining())
-        );
-        System.out.println(sum);
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
 
+            Node node = (Node) o;
+
+            if (row != node.row) return false;
+            return col == node.col;
+        }
+
+        @Override
+        public int hashCode() {
+            int result = row;
+            result = 31 * result + col;
+            return result;
+        }
     }
 }

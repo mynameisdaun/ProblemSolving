@@ -1,9 +1,18 @@
 package challenging;
 
+import sun.awt.image.ImageWatched;
+
+import java.util.*;
+
 class Solution {
     public int[] solution(int rows, int columns, int[][] queries) {
         int[] answer = new int[queries.length];
         int[][] graph = new int[rows][columns];
+
+        Deque deque = new LinkedList();
+        Collections.sort(new ArrayList<>(), Collections.reverseOrder());
+
+
 
         for(int i = 0 ; i < rows ; i++) {
             for(int j = 0 ; j < columns ; j++) {
