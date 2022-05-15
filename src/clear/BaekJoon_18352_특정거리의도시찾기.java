@@ -1,4 +1,4 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 
-public class Main {
+public class BaekJoon_18352_특정거리의도시찾기 {
     static class Node implements Comparable<Node>{
         private int index;
         private int distance;
