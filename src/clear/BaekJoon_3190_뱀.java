@@ -47,8 +47,7 @@ public class BaekJoon_3190_뱀 {
     static void changeDirection(String d) {
         if("D".equals(d)) {
             direction = (direction + 1) % 4 ;
-        }
-        if("L".equals(d)) {
+        }if("L".equals(d)) {
             direction = (direction ==0 ) ? 3 : direction -1 ;
         }
     }

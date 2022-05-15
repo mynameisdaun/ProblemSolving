@@ -1,9 +1,9 @@
-package challenging;
+package clear;
 
-import java.util.*;
-import java.util.stream.*;
+import java.util.ArrayList;
+import java.util.List;
 
-class Solution {
+class 기둥과보 {
 
     public int[][] solution(int n, int[][] build_frame) {
         List<int[]> answer = new ArrayList<>();
