@@ -1,4 +1,4 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Main {
+public class BaekJoon_15686_치킨배달 {
     static final int house = 1;
     static final int chicken = 2;
     static int answer = Integer.MAX_VALUE;
