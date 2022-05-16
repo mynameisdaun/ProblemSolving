@@ -1,6 +1,8 @@
-import java.util.*;
+package clear;
 
-class Solution {
+import java.util.Stack;
+
+class 괄호변환 {
 
     public String solution(String p) {
         return DFS(p);
