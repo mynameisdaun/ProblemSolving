@@ -1,4 +1,4 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,9 +6,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main {
+public class 감시피하기 {
     static class Node {
-        private int x;
+        private int x;;
         private int y;
         public Node(int x, int y) {
             this.x = x;
