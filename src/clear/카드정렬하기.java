@@ -1,10 +1,9 @@
-package challenging;
+package clear;
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.PriorityQueue;
 
-public class Main {
+public class 카드정렬하기 {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
