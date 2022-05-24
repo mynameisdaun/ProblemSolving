@@ -1,9 +1,9 @@
-package challenging;
+package clear;
 
 import java.io.*;
 import java.util.Arrays;
 
-public class Main {
+public class BaekJoon_2110_공유기설치 {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
