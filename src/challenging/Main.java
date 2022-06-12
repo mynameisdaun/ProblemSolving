@@ -17,7 +17,7 @@ public class Main {
         }
         Arrays.sort(houses);
         int min = 1;
-        int max = houses[n-1];
+        int max = houses[n-1];;
         int answer = 0;
         while(min <= max) {
             int mid = (min + max) / 2;
