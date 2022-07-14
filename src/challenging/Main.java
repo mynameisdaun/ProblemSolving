@@ -10,7 +10,7 @@ public class Main {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         int[] input = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         int n = input[0];
-        int c = input[1];;;;
+        int c = input[1];
         int[] houses = new int[n];
         for(int i = 0 ; i < n ; i++) {
             houses[i]=Integer.parseInt(br.readLine());
