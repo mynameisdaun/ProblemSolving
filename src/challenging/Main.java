@@ -14,7 +14,7 @@ public class Main {
         int[] houses = new int[n];
         for(int i = 0 ; i < n ; i++) {
             houses[i]=Integer.parseInt(br.readLine());
-        }//
+        }///
         Arrays.sort(houses);
         int min = 1;;
         int max = houses[n-1];;
