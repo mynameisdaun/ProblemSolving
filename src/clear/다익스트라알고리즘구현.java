@@ -66,6 +66,7 @@ public class 다익스트라알고리즘구현 {
         public Node(final int index, final int distance) {
             this.index = index;
             this.distance = distance;
+            
         }
 
         public int getIndex() {
