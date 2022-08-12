@@ -1,11 +1,11 @@
-package challenging;
+package again;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
-public class Main {
+public class BOJ_1001_상어 {
     static int[] dx = {0, -1, -1, 0, 1, 1, 1, 0, -1};
     static int[] dy = {0, 0, -1, -1, -1, 0, 1, 1, 1};
     static int answer = 0;
