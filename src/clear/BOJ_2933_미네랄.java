@@ -1,11 +1,11 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
-public class Main {
+public class BOJ_2933_미네랄 {
     static int[] dx = {0, 0, 1, -1};
     static int[] dy = {1, -1, 0, 0};
     static int r;
