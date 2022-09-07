@@ -1,4 +1,4 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Main {
+public class BOJ_13913_숨바꼭질 {
 
     static int INF = 100001;
     static boolean find = false;
