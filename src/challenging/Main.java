@@ -3,45 +3,38 @@ package challenging;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int[] input = Arrays.stream(br.readLine().split(" "))
-                .mapToInt(Integer::parseInt).toArray();
-        int row = input[1];
-        int col = input[0];
-        // 0 : 아래서, 1: 옆에서
-        int[][][][] board = new int[row+1][col+1][2][2];
-
-        for(int i = 2 ; i <= row ; i++) {
-            board[i][1][0][0] = 1;
-        }
-
-        for(int i = 2 ; i <= col ; i++) {
-            board[1][i][1][0] = 1;
-        }
-
-        for(int i = 2 ; i <= row ; i++) {
-            for(int j = 2 ; j <= col ; j++) {
-                //변경 안할꺼니까, 다 가능
-                board[i][j][0][0] = (board[i-1][j][0][0] + board[i-1][j][0][1]) % 100000;
-                board[i][j][1][0] = (board[i][j-1][1][0] + board[i][j-1][1][1]) % 100000;
-                //변경할꺼니까, 변경 안한것만 가능
-                board[i][j][0][1] = board[i-1][j][1][0];
-                board[i][j][1][1] = board[i][j-1][0][0];
+        int n = Integer.parseInt(br.readLine());
+        Map<String, Integer> map = new HashMap<>();
+        String[] words = new String[n];
+        for (int i = 1; i <= n; i++) {
+            words[i - 1] = br.readLine();
+            String[] word = words[i - 1].split("");
+            for (int j = 0; j < word.length; j++) {
+                int index = j + 1;
+                String curr = word[word.length - 1 - j];
+                int num = map.getOrDefault(curr, 0);
+                map.put(curr, num + (int) (Math.pow(10, index - 1)));
             }
         }
-
+        int count = 9;
         int answer = 0;
-        for(int i = 0 ; i < 2 ; i++) {
-            for (int j = 0; j < 2; j++) {
-                answer += board[row][col][i][j];
-            }
+        List<Integer> list = map.entrySet()
+                .stream()
+                .sorted((a, b) -> b.getValue() - a.getValue())
+                .map(a -> a.getValue())
+                .collect(Collectors.toList());
+        for (int i = 0; i < list.size(); i++) {
+            answer += (list.get(i) * count--);
         }
-        System.out.println(answer % 100000);
+        System.out.println(answer);;
     }
-
 }
