@@ -1,11 +1,11 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
-public class Main {
+public class BOJ_1717_집합의표현 {
 
     public static void union(int[] parent, int a, int b) {
         int a_parent = find(parent, a);
