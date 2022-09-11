@@ -1,4 +1,4 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.PriorityQueue;
 
-public class Main {
+public class BOJ_1922_네트워크연결 {
 
     public static int find(int[] parent, int i) {
         if (i == parent[i])
