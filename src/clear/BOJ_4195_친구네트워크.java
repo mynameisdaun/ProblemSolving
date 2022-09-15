@@ -1,11 +1,14 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
-public class Main {
+public class BOJ_4195_친구네트워크 {
 
     public static void union(int[] parent, int a, int b, Map<Integer, Set<Integer>> network) {
         int a_parent = find(parent, a);
