@@ -3,58 +3,115 @@ package challenging;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.PriorityQueue;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Main {
 
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String[] input = br.readLine().split(" ");
+        int tcase = Integer.parseInt(br.readLine());
 
-        int n = Integer.parseInt(input[0]);
-        int k = Integer.parseInt(input[1]);
+        while (tcase-- > 0) {
+            String[] input = br.readLine().split(" ");
+            int n = Integer.parseInt(input[0]);
+            int k = Integer.parseInt(input[1]);
+            boolean[][] board = new boolean[n + 1][n + 1];
 
+            int[] time = new int[n + 1];
+            int[] construct = new int[n + 1];
+            boolean[] visited = new boolean[n + 1];
 
-        int[] bags = new int[k];
-        Jewel[] jewels = new Jewel[n];
-
-        for (int i = 0; i < n; i++) {
             input = br.readLine().split(" ");
-            jewels[i] = new Jewel(Integer.parseInt(input[0]), Integer.parseInt(input[1]));
-        }
-        for (int i = 0; i < k; i++) {
-            bags[i] = Integer.parseInt(br.readLine());
-        }
-        Arrays.sort(jewels, (a, b) -> a.weight - b.weight);
-        Arrays.sort(bags);
-        long answer = 0;
-        int idx = 0;
-
-        PriorityQueue<Jewel> pq = new PriorityQueue<>((a, b) -> b.value - a.value);
-        for (int i = 0; i < k; i++) {
-            int bag = bags[i];
-            while (true) {
-                if (idx >= n) break;
-                Jewel jewel = jewels[idx];
-                if (jewel.weight > bag) break;
-                pq.offer(jewel);
-                idx++;
+            for (int i = 0; i < n; i++) {
+                construct[i + 1] = Integer.parseInt(input[i]);
             }
-            if(pq.isEmpty()) continue;
-            answer += pq.poll().value;
+
+            int[] degree = new int[n + 1];
+            for (int i = 0; i < k; i++) {
+                input = br.readLine().split(" ");
+                int start = Integer.parseInt(input[0]);
+                int end = Integer.parseInt(input[1]);
+                board[start][end] = true;
+                degree[end]++;
+            }
+
+            int target = Integer.parseInt(br.readLine());
+
+            Queue<Node> queue = new LinkedList<>();
+
+            for (int i = 1; i <= n; i++) {
+                if (degree[i] == 0) {
+                    queue.offer(new Node(i, 1));
+                }
+            }
+
+            while (!queue.isEmpty()) {
+                Node now = queue.poll();
+                //System.out.println("now: "+now.index+" level: "+now.level);
+                if (now.index == target) {
+                    int answer = construct[target];
+                    for (int i = 1; i <= now.level - 1; i++) {
+                        answer += time[i];
+                    }
+                    System.out.println(answer);
+                    break;
+                }
+
+                visited[now.index] = true;
+                time[now.level] = Math.max(time[now.level], construct[now.index]);
+
+                for (int i = 1; i <= n; i++) {
+                    if (board[now.index][i]) {
+                        degree[i]--;
+                        if(degree[i]==0 && !visited[i]) {
+                            queue.offer(new Node(i, now.level + 1));
+                        }
+                    }
+                }
+            }
         }
-        System.out.println(answer);
     }
 
-    static class Jewel {
-        private int weight;
-        private int value;
+    static class Node {
+        private int index;
+        private int level;
 
-        public Jewel(int weight, int value) {
-            this.weight = weight;
-            this.value = value;
+        public Node(int index, int level) {
+            this.index = index;
+            this.level = level;
         }
     }
 }
+/*
+1
+2 1
+1000 1
+1 2
+1
+
+1
+4 4
+1000 1 10000000 9
+1 2
+1 3
+2 4
+3 4
+4
+
+1
+2 1
+100 10
+2 1
+1
+
+1
+5 5
+10 1 100 10 5000
+1 2
+1 3
+2 4
+3 4
+5 4
+4
+ */
