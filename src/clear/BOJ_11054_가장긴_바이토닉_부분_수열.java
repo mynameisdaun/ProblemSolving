@@ -1,4 +1,4 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 import static java.lang.Integer.parseInt;
 
-public class Main {
+public class BOJ_11054_가장긴_바이토닉_부분_수열 {
 
     static int N, numbers[], leftToRight[], rightToLeft[];
 
