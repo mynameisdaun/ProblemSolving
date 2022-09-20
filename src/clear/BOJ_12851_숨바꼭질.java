@@ -1,4 +1,4 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.util.Queue;
 
 import static java.lang.Integer.parseInt;
 
-public class Main {
+public class BOJ_12851_숨바꼭질 {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
