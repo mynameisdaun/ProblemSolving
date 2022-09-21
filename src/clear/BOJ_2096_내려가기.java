@@ -1,4 +1,4 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 import static java.lang.Integer.parseInt;
 
-public class Main {
+public class BOJ_2096_내려가기 {
 
     static int N, board[][], dp[][][];
 
