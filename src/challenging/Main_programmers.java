@@ -1,51 +1,66 @@
 package challenging;
 
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.PriorityQueue;
 
 public class Main_programmers {
 
     public static void main(String[] args) throws IOException {
-        //BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         Solution solution = new Solution();
-        int[][] fees = {{4, 1000}, {6, 1000}, {21, 3000}, {16, 2000}, {26, 3000}};
-        int t = 27;
-        long[] solution1 = solution.solution(fees, t);
+        int n = 3;
+        int m = 4;
+        int x = 2;
+        int y = 3;
+        int r = 3;
+        int c = 1;
+        int k =  5;
+
+
     }
 
     static class Solution {
-        public long[] solution(int[][] fees, int t) {
-            //b -> 기본요금, 주차시간 -> a
-            long[] answer = {};
-            Arrays.sort(fees, (a, b) -> {
-                if (a[1] == b[1]) {
-                    return a[0] - b[0];
+        public long solution(int cap, int n, int[] deliveries, int[] pickups) {
+            long answer = 0;
+            //dp냐 그리디냐
+            PriorityQueue<int[]> deliveryQueue = new PriorityQueue<>((a, b) -> b[0] - a[0]);
+            PriorityQueue<int[]> pickupQueue = new PriorityQueue<>((a, b) -> b[0] - a[0]);
+
+            for (int i = 0; i < n; i++) {
+                if (deliveries[i] > 0) {
+                    deliveryQueue.add(new int[]{i+1, deliveries[i]});
                 }
-                return a[1] - b[1];
-            });
-
-
-            int start = 1;
-            int end = 1000000;
-
-            while(start < end) {
-                int mid = end;
-
+                if (pickups[i] > 0) {
+                    pickupQueue.add(new int[]{i+1, pickups[i]});
+                }
             }
 
+            while(true) {
 
-            for (int i = 0; i < fees.length; i++) {
-                System.out.println(fees[i][0] + " " + fees[i][1]);
+                int truck = cap;
+                int distance = -1;
+                System.out.println("딜리버리");
+                while (!deliveryQueue.isEmpty()) {
+                    int[] node = deliveryQueue.poll();
+                    System.out.println("index: "+node[0]+" stuffs: "+node[1]);
+                    if (truck >= node[1]) {
+                        truck -= node[1];
+                        distance = Math.max(distance, node[0]);
+                    } else if (truck < node[1]) {
+                        deliveryQueue.offer(new int[]{node[0], node[1] - truck});
+                        distance = Math.max(distance, node[0]);
+                        truck = 0;
+                    }
+                    if(truck==0) break;
+                }
+
+                truck = cap;
+                System.out.println("픽업");
+
+                if(distance > 0) {
+                    answer += (distance * 2);
+                }
+                if(deliveryQueue.isEmpty()&&pickupQueue.isEmpty()) break;
             }
-            System.out.println();
-            //없을때는 -1 return
-            /*
-            4 1000
-            6 1000
-            16 2000
-            21 3000
-            26 3000
-             */
             return answer;
         }
     }
