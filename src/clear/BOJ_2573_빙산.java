@@ -1,4 +1,4 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Queue;
 
 
-public class Main {
+public class BOJ_2573_빙산 {
 
     static int row, col, board[][], dx[] = {1, -1, 0, 0}, dy[] = {0, 0, 1, -1};
 
