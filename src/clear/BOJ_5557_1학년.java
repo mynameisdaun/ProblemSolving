@@ -1,4 +1,4 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 
 
-public class Main {
+public class BOJ_5557_1학년 {
     static int n, seq[];
     static long answer = 0, memo[][];
 
