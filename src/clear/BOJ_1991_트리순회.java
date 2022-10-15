@@ -1,11 +1,13 @@
-package challenging;
+package clear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Objects;
+import java.util.Queue;
 
-public class Main {
+public class BOJ_1991_트리순회 {
 
 
     public static void main(String[] args) throws IOException {
