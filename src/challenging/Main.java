@@ -3,110 +3,84 @@ package challenging;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class Main {
 
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
+        int[] input = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+        int n = input[0], k = input[1], r = input[2];
         int[] dx = {0, 0, 1, -1};
         int[] dy = {1, -1, 0, 0};
-
-        int[] hx = {-2, -1, 1, 2, 2, 1, -1, -2};
-        int[] hy = {1, 2, 2, 1, -1, -2, -2, -1};
-
-        int k = Integer.parseInt(br.readLine());
-        String[] input = br.readLine().split(" ");
-        int row = Integer.parseInt(input[1]);
-        int col = Integer.parseInt(input[0]);
-        int[][] board = new int[row][col];
-
-        for (int i = 0; i < row; i++) {
-            board[i] = Arrays.stream(br.readLine().split(" "))
-                    .mapToInt(Integer::parseInt)
-                    .toArray();
-        }
-        if(row==1&&col==1&&board[0][0]==1) {
-            System.out.println(-1);
-            return;
-        }
-
-        Queue<int[]> queue = new LinkedList<>();
-        boolean[][][] visited = new boolean[k+1][row][col];
-        visited[0][0][0] = true;
-        //k, x, y, d
-        queue.offer(new int[]{0, 0, 0, 0});
-        while (!queue.isEmpty()) {
-            int[] node = queue.poll();
-            int currK = node[0];
-            int currX = node[1];
-            int currY = node[2];
-            int currD = node[3];
-            if(currX==row-1&&currY==col-1) {
-                System.out.println(currD);
-                return;
+        List<List<List<int[]>>> road = new ArrayList<>();
+        for (int i = 0; i <= n; i++) {
+            road.add(new ArrayList<>());
+            for (int j = 0; j <= n; j++) {
+                road.get(i).add(new ArrayList<>());
             }
-            //말처럼 더 움직일 수 있을때
-            if (currK < k) {
-                for (int i = 0; i < 8; i++) {
-                    int nx = currX + hx[i];
-                    int ny = currY + hy[i];
-                    int nk = currK + 1;
-                    if (nx >= 0 && nx < row && ny >= 0 && ny < col && !visited[nk][nx][ny] && board[nx][ny] != 1) {
-                        visited[nk][nx][ny]=true;
-                        queue.offer(new int[]{nk, nx, ny, currD + 1});
+        }
+
+        for (int i = 0; i < r; i++) {
+            input = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+            int x1 = input[0], y1 = input[1], x2 = input[2], y2 = input[3];
+            road.get(x1).get(y1).add(new int[]{x2, y2});
+            road.get(x2).get(y2).add(new int[]{x1, y1});
+        }
+
+        int[][] board = new int[n + 1][n + 1];
+
+        for (int i = 0; i < k; i++) {
+            input = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+            board[input[0]][input[1]] = 1;
+        }
+
+        int answer = 0;
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (board[i][j] == 1) {
+                    boolean[][] visited = new boolean[n + 1][n + 1];
+                    Queue<int[]> queue = new LinkedList<>();
+                    queue.offer(new int[]{i, j});
+                    visited[i][j] = true;
+                    int cow = 0;
+                    while (!queue.isEmpty()) {
+                        int[] node = queue.poll();
+                        int x = node[0];
+                        int y = node[1];
+                        if (board[x][y] == 1) {
+                            cow++;
+                        }
+                        for (int l = 0; l < 4; l++) {
+                            int nx = x+dx[l];
+                            int ny = y+dy[l];
+                            if(nx>=1&&nx<=n&&ny>=1&&ny<=n&&!visited[nx][ny]&&noBridge(x,y,nx,ny,road)) {
+                                visited[nx][ny]=true;
+                                queue.offer(new int[]{nx, ny});
+                            }
+                        }
                     }
-                }
-            }
-            for (int i = 0; i < 4; i++) {
-                int nx = currX + dx[i];
-                int ny = currY + dy[i];
-                if (nx >= 0 && nx < row && ny >= 0 && ny < col && !visited[currK][nx][ny] && board[nx][ny] != 1) {
-                    visited[currK][nx][ny]=true;
-                    queue.offer(new int[]{currK, nx, ny, currD + 1});
+                    answer += (k - cow);
                 }
             }
         }
-        System.out.println(-1);
+        System.out.println(answer / 2);
     }
+    public static boolean noBridge(int x1, int y1, int x2, int y2, List<List<List<int[]>>> road) {
+        if(road.get(x1).get(y1).isEmpty()) {
+            return true;
+        } else {
+            return road.get(x1).get(y1).stream()
+                    .filter( r ->r[0]==x2&&r[1]==y2).count() == 0;
+        }
+    }
+    /*
+    0 0 0
+
+    0 0 0
+      | |
+    0 0-0
+     */
 }
-/*
-0
-2 2
-0 1
-1 0
--> -1
 
-0
-2 2
-0 0
-1 0
--> 2
-
-0
-2 3
-0 1
-1 1
-1 0
--> -1
-
-1
-2 3
-0 1
-1 1
-1 0
--> 1
-
-2
-2 6
-0 1
-1 1
-0 0
-0 1
-1 1
-1 0
-->4
- */
