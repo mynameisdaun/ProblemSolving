@@ -3,91 +3,36 @@ package challenging;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
 
 public class Main {
 
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        long[][] memo = new long[31][31];
+        for (int i = 0; i <= 30; i++) {
+            for (int j = 0; j <= 30; j++) {
+                memo[i][j] = -1L;
+            }
+        }
         int n = Integer.parseInt(br.readLine());
-        int[] inDegree = new int[n + 1];
-        int[] times = new int[n + 1];
-        Map<Integer, Integer> map = new HashMap<>();
-        boolean[][] board = new boolean[n + 1][n + 1];
-        boolean[] visited = new boolean[n + 1];
-        for (int i = 0; i < n; i++) {
-            int[] input = Arrays.stream(br.readLine().split(" "))
-                    .mapToInt(Integer::parseInt).toArray();
-            times[i + 1] = input[0];
-            for (int j = 1; j < input.length; j++) {
-                if (input[j] == -1) break;
-                board[input[j]][i + 1] = true;
-                inDegree[i + 1]++;
-            }
-        }
-
-        //번호, 건물짓는데 걸리는 시간, 이제까지 걸린 시간
-        PriorityQueue<int[]> queue = new PriorityQueue<>((a, b) -> (a[1]+a[2]) - (b[1]+b[2]));
-        for (int i = 1; i <= n; i++) {
-            if (inDegree[i] == 0) {
-                queue.offer(new int[]{i, times[i], 0});
-                visited[i] = true;
-            }
-        }
-
-        while (!queue.isEmpty()) {
-            int[] node = queue.poll();
-            int vertex = node[0];
-            int time = node[1];
-            int accumulateTime = node[2];
-            map.put(vertex, time + accumulateTime);
-            for (int i = 1; i <= n; i++) {
-                if (!visited[i]&&board[vertex][i]) {
-                    if (--inDegree[i] == 0) {
-                        queue.offer(new int[]{i, times[i], time+accumulateTime});
-                        visited[i]=true;
-                    }
-                }
-            }
-        }
-        for (int i = 1; i <= n ; i++) {
-            System.out.println(map.get(i));
+        while (n != 0) {
+            System.out.println(count(memo, n, 0));
+            n = Integer.parseInt(br.readLine());
         }
     }
+
+    public static long count(long[][] memo, int w, int h) {
+        if (memo[w][h] != -1) {
+            return memo[w][h];
+        }
+        if (w == 1 && h == 0) return 1;
+        if (w == 2 && h == 0) return 2;
+        if (w == 3 && h == 0) return 5;
+        if (w == 0) return memo[w][h] = 1;
+        if (h > 0) {
+            return memo[w][h] = count(memo, w, h - 1) + count(memo, w - 1, h + 1);
+        }
+        return memo[w][h] = count(memo, w - 1, h + 1);
+    }
 }
-/*
-4
-100(1) - 1(2) - 3 - 1
-103  -----------|
-
-4
-100 2 3 4 -1
-10 -1
-30 4 -1
-50 -1
-
-4
-100 -1
-1 1 -1
-3 1 2 4 -1
-103 -1
-
-5
-100 -1
-90 -1
-80 -1
-70 -1
-60 1 -1
-
-
-5
-10 -1
-10 1 -1
-4 1 -1
-4 3 1 -1
-3 3 -1
-
- */
-
-
