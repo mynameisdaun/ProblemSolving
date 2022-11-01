@@ -6,33 +6,24 @@ import java.io.InputStreamReader;
 
 public class Main {
 
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        long[][] memo = new long[31][31];
-        for (int i = 0; i <= 30; i++) {
-            for (int j = 0; j <= 30; j++) {
-                memo[i][j] = -1L;
+        String[] input = br.readLine().split(" ");
+        int n = Integer.parseInt(input[0]);
+        int k = Integer.parseInt(input[1]);
+
+        int[][] dp = new int[k][n+1];
+        for (int i = 0; i < k; i++) {
+            dp[i][0]=1;
+        }
+        for (int i = 0; i < n+1; i++) {
+            dp[0][i]=1;
+        }
+        for (int i = 1; i < k ; i++) {
+            for (int j = 1; j <= n ; j++) {
+                dp[i][j] = (dp[i][j-1]+dp[i-1][j])%1000000000;
             }
         }
-        int n = Integer.parseInt(br.readLine());
-        while (n != 0) {
-            System.out.println(count(memo, n, 0));
-            n = Integer.parseInt(br.readLine());
-        }
-    }
-
-    public static long count(long[][] memo, int w, int h) {
-        if (memo[w][h] != -1) {
-            return memo[w][h];
-        }
-        if (w == 1 && h == 0) return 1;
-        if (w == 2 && h == 0) return 2;
-        if (w == 3 && h == 0) return 5;
-        if (w == 0) return memo[w][h] = 1;
-        if (h > 0) {
-            return memo[w][h] = count(memo, w, h - 1) + count(memo, w - 1, h + 1);
-        }
-        return memo[w][h] = count(memo, w - 1, h + 1);
+        System.out.println(dp[k-1][n]);
     }
 }
