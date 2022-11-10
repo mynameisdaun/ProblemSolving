@@ -7,36 +7,40 @@ import java.util.*;
 
 public class Main {
 
+    static int n;
+    static int[] arr;
+    static boolean[] visited;
+    static List<Integer> answer = new ArrayList<>();
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        long n = Long.parseLong(br.readLine());
-        int[] arr = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-        long answer = 0L;
-        if (n == 1) {
-            Arrays.sort(arr);
-            for (int i = 0; i < 5; i++) {
-                answer += arr[i];
-            }
-            System.out.println(answer);
-            return;
+        n = Integer.parseInt(br.readLine());
+        arr = new int[n + 1];
+        for (int i = 0; i < n; i++) {
+            arr[i+1]=Integer.parseInt(br.readLine());
         }
-        long onePlane = 50L;
-        long twoPlane = 100L;
-        long threePlane = 150L;
-        for (int i = 0; i < 6; i++) {
-            onePlane = Math.min(onePlane, arr[i]);
-            for (int j = i + 1; j < 6; j++) {
-                if (i + j == 5) continue;
-                twoPlane = Math.min(twoPlane, arr[i] + arr[j]);
-                for (int k = j + 1; k < 6; k++) {
-                    if (i + k == 5 || j + k == 5) continue;
-                    threePlane = Math.min(threePlane, arr[i] + arr[j] + arr[k]);
-                }
-            }
+        visited = new boolean[n + 1];
+
+
+        for (int i = 1; i <= n; i++) {
+            visited[i] = true;
+            dfs(i, i);
+            visited[i] = false;
         }
-        answer += 4 * threePlane;
-        answer += (4 + 8 * (n - 2)) * twoPlane;
-        answer += (4 * (n - 2) + (5 * (n - 2) * (n - 2))) * onePlane;
-        System.out.println(answer);
+        Collections.sort(answer);
+        System.out.println(answer.size());
+        answer.forEach(System.out::println);
     }
+
+    static void dfs(int start, int target) {
+        if (!visited[arr[start]]) {
+            visited[arr[start]] = true;
+            dfs(arr[start], target);
+            visited[arr[start]] = false;
+        }
+        if (arr[start] == target) {
+            answer.add(target);
+        }
+    }
+
 }
