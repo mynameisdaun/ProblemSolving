@@ -7,40 +7,50 @@ import java.util.*;
 
 public class Main {
 
-    static int n;
-    static int[] arr;
-    static boolean[] visited;
-    static List<Integer> answer = new ArrayList<>();
+    static int n, m;
+    static boolean visited[], find = false;
+    static List<ArrayList<Integer>> board = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        n = Integer.parseInt(br.readLine());
-        arr = new int[n + 1];
+        String[] input = br.readLine().split(" ");
+        n = Integer.parseInt(input[0]);
+        m = Integer.parseInt(input[1]);
+        visited = new boolean[n];
         for (int i = 0; i < n; i++) {
-            arr[i+1]=Integer.parseInt(br.readLine());
+            board.add(new ArrayList<>());
         }
-        visited = new boolean[n + 1];
 
-
-        for (int i = 1; i <= n; i++) {
-            visited[i] = true;
-            dfs(i, i);
-            visited[i] = false;
+        for (int i = 0; i < m; i++) {
+            input = br.readLine().split(" ");
+            int s = Integer.parseInt(input[0]);
+            int e = Integer.parseInt(input[1]);
+            board.get(s).add(e);
+            board.get(e).add(s);
         }
-        Collections.sort(answer);
-        System.out.println(answer.size());
-        answer.forEach(System.out::println);
+
+        for (int i = 0; i < n; i++) {
+            dfs(1, i);
+            if (find) {
+                System.out.println(1);
+                return;
+            }
+        }
+        System.out.println(0);
     }
 
-    static void dfs(int start, int target) {
-        if (!visited[arr[start]]) {
-            visited[arr[start]] = true;
-            dfs(arr[start], target);
-            visited[arr[start]] = false;
+    static void dfs(int l, int s) {
+        if (l == 5) {
+            find = true;
+            return;
         }
-        if (arr[start] == target) {
-            answer.add(target);
+        visited[s] = true;
+        for (Integer num : board.get(s)) {
+            if (!visited[num]) {
+                dfs(l + 1, num);
+            }
         }
+        visited[s] = false;
     }
 
 }
