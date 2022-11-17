@@ -4,47 +4,44 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.PriorityQueue;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int n = input(br)[0];
-        int k = input(br)[0];
-        int[] arr = input(br);
-        int sum = 0;
-        Arrays.sort(arr);
-        PriorityQueue<Point> pq = new PriorityQueue<>();
-        for (int i = 1; i < n; i++) {
-            if (arr[i] != arr[i - 1]) {
-                pq.offer(new Point(arr[i - 1], arr[i]));
-                sum += (arr[i] - arr[i - 1]);
+        int n = input(br)[0], crane[] = input(br), m = input(br)[0], boxes[] = input(br);
+        Arrays.sort(crane);
+        Arrays.sort(boxes);
+        int start = 1;
+        int end = m;
+        int answer = m;
+        if (crane[n - 1] < boxes[m - 1]) {
+            System.out.println(-1);
+            return;
+        }
+        while (start < end) {
+            int mid = (start + end) / 2;
+            boolean find = false;
+            for (int i = 1; i <= n; i++) {
+                int max = m - 1 - (mid * (i - 1));
+                int min = m - (mid * i);
+                if (max < 0 || (crane[n - i] >= boxes[max] && min <= 0)) {
+                    find = true;
+                    break;
+                }
+                if (crane[n - i] < boxes[max]) {
+                    break;
+                }
+            }
+            if (find) {
+                end = mid;
+                answer = Math.min(answer, mid);
+            } else {
+                start = mid + 1;
             }
         }
-        while (!pq.isEmpty() && k-- > 1) {
-            sum -= pq.poll().d;
-        }
-        System.out.println(sum);
+        System.out.println(answer);
     }
-
-    static class Point implements Comparable<Point> {
-        private int s;
-        private int e;
-        private int d;
-
-        public Point(int s, int e) {
-            this.s = s;
-            this.e = e;
-            this.d = e - s;
-        }
-
-        @Override
-        public int compareTo(Point o) {
-            return o.d - this.d;
-        }
-    }
-
 
     static int[] input(BufferedReader br) throws IOException {
         return Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
