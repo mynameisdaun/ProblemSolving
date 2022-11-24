@@ -1,49 +1,54 @@
 package challenging;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.PriorityQueue;
+import java.util.StringTokenizer;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    private void solution() throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int n = input(br)[0], crane[] = input(br), m = input(br)[0], boxes[] = input(br);
-        Arrays.sort(crane);
-        Arrays.sort(boxes);
-        int start = 1;
-        int end = m;
-        int answer = m;
-        if (crane[n - 1] < boxes[m - 1]) {
-            System.out.println(-1);
-            return;
+        int n = Integer.parseInt(br.readLine());
+        PriorityQueue<Line> pq = new PriorityQueue<>();
+        while (n-- > 0) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            pq.add(new Line(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())));
         }
-        while (start < end) {
-            int mid = (start + end) / 2;
-            boolean find = false;
-            for (int i = 1; i <= n; i++) {
-                int max = m - 1 - (mid * (i - 1));
-                int min = m - (mid * i);
-                if (max < 0 || (crane[n - i] >= boxes[max] && min <= 0)) {
-                    find = true;
-                    break;
-                }
-                if (crane[n - i] < boxes[max]) {
-                    break;
-                }
+
+        int sum = 0;
+        int bfX = pq.peek().x;
+        int bfY = pq.peek().y;
+        pq.poll();
+        while (!pq.isEmpty()) {
+            Line cur = pq.poll();
+            if (cur.x > bfY) {
+                sum += bfY - bfX;
+                bfX = cur.x;
+                bfY = cur.y;
+                continue;
             }
-            if (find) {
-                end = mid;
-                answer = Math.min(answer, mid);
-            } else {
-                start = mid + 1;
-            }
+            bfY = Math.max(bfY, cur.y);
         }
-        System.out.println(answer);
+        System.out.println(sum + bfY - bfX);
     }
 
-    static int[] input(BufferedReader br) throws IOException {
-        return Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+    public static void main(String[] args) throws Exception {
+        new Main().solution();
+    }
+
+    class Line implements Comparable<Line> {
+        int x, y;
+
+        public Line(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        @Override
+        public int compareTo(Line o) {
+            if (this.x == o.x) return o.y - this.y;
+            return this.x - o.x;
+        }
     }
 }
