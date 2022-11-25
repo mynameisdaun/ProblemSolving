@@ -12,6 +12,7 @@ public class Main {
         int n = Integer.parseInt(br.readLine());
         PriorityQueue<Line> pq = new PriorityQueue<>();
         while (n-- > 0) {
+            //
             StringTokenizer st = new StringTokenizer(br.readLine());
             pq.add(new Line(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())));
         }
