@@ -1,55 +1,68 @@
 package challenging;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.PriorityQueue;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Main {
 
-    private void solution() throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(br.readLine());
-        PriorityQueue<Line> pq = new PriorityQueue<>();
-        while (n-- > 0) {
-            ///
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            pq.add(new Line(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())));
-        }
-
-        int sum = 0;
-        int bfX = pq.peek().x;
-        int bfY = pq.peek().y;
-        pq.poll();
-        while (!pq.isEmpty()) {
-            Line cur = pq.poll();
-            if (cur.x > bfY) {
-                sum += bfY - bfX;
-                bfX = cur.x;
-                bfY = cur.y;
-                continue;
-            }
-            bfY = Math.max(bfY, cur.y);
-        }
-        System.out.println(sum + bfY - bfX);
-    }
+    static int n, board[][], WHITE = 1,
+            changes[][], dx[] = {-1, 0, 1, 0}, dy[] = {0, -1, 0, 1};
 
     public static void main(String[] args) throws Exception {
-        new Main().solution();
+        Scanner sc = new Scanner(System.in);
+        n = sc.nextInt();
+        board = new int[n][n];
+        changes = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            String str = sc.next();
+            for (int j = 0; j < str.length(); j++) {
+                board[i][j] = str.charAt(j) - '0';
+                changes[i][j] = Integer.MAX_VALUE;
+            }
+        }
+        System.out.println(bfs());
     }
 
-    class Line implements Comparable<Line> {
-        int x, y;
+    static int bfs() {
+        Queue<Room> queue = new LinkedList<>();
+        queue.add(new Room(0, 0));
+        changes[0][0] = 0;
+        while (!queue.isEmpty()) {
+            Room room = queue.poll();
+            int x = room.x;
+            int y = room.y;
+            for (int i = 0; i < 4; i++) {
+                int nx = x + dx[i];
+                int ny = y + dy[i];
+                if (nx >= 0 && nx < n && ny >= 0 && ny < n && changes[nx][ny] > changes[x][y]) {
+                    if (board[nx][ny] == WHITE) {
+                        changes[nx][ny] = changes[x][y];
+                    } else {
+                        changes[nx][ny] = changes[x][y] + 1;
+                    }
+                    queue.add(new Room(nx, ny));
+                }
+            }
+        }
+        return changes[n - 1][n - 1];
+    }
 
-        public Line(int x, int y) {
+
+    static class Room {
+        int x;
+        int y;
+
+
+        public Room(int x, int y) {
             this.x = x;
             this.y = y;
         }
-
-        @Override
-        public int compareTo(Line o) {
-            if (this.x == o.x) return o.y - this.y;
-            return this.x - o.x;
-        }
     }
+
+    static int[] input(BufferedReader br) throws IOException {
+        return Arrays.stream(br.readLine().split("")).mapToInt(Integer::parseInt).toArray();
+    }
+
 }
